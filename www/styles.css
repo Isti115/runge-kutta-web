@@ -1,4 +1,38 @@
-canvas {
+#main {
+  display: grid;
+  /* grid-template-columns: fit-content(200px) auto; */
+  /* grid-template-columns: max-content auto; */
+  grid-template-columns: min-content 600px;
+  grid-gap: 10px;
+}
+
+#configContainer {
+  grid-column: 1;
+
+  padding: 10px;
+
+  text-align: center;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
+
+#configContainer div {
+  margin: 10px;
+}
+
+#configContainer #processButton {
+  font-size: 30px;
+}
+
+#rendererContainer {
+  grid-column: 2;
+}
+
+#rendererContainer canvas {
+  display: inline-block;
+
   border-style: solid;
   border-color: black;
   border-width: 1px;

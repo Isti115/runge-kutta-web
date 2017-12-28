@@ -1,0 +1,20 @@
+{
+  "name": "runge-kutta-web",
+  "version": "1.0.0",
+  "description": "Runge-Kutta method demonstration using web technologies",
+  "main": "www/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isti115/runge-kutta-web.git"
+  },
+  "author": "Isti115",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^2.7.1",
+    "mathjax": "^2.7.2",
+    "mathjs": "^3.18.0"
+  }
+}
