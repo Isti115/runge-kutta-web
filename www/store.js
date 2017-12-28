@@ -3,9 +3,11 @@
 class Store {
   constructor () {
     this.state = {
-      function: 'e^x',
-      derivative: 'e^x'
+      from: 0,
+      to: 1,
+      primitiveFunction: 'x^2'
     }
+    this.state.derivative = math.derivative(this.state.primitiveFunction, 'x').toString()
 
     this.callbacks = []
   }
@@ -18,7 +20,7 @@ class Store {
     this.state = Object.assign({}, this.state, updates)
 
     try {
-      this.state.derivative = math.derivative(this.state.function, 'x')
+      this.state.derivative = math.derivative(this.state.primitiveFunction, 'x').toString()
     } catch (e) {
       console.log(e.toString())
     }

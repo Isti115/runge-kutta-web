@@ -22,6 +22,12 @@
   margin: 10px;
 }
 
+#configContainer .rangeInput {
+  width: 100px;
+
+  margin: 5px;
+}
+
 #configContainer #processButton {
   font-size: 30px;
 }

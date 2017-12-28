@@ -14,6 +14,9 @@ export default class Config {
     this.inputChanged = this.inputChanged.bind(this)
     this.updateFields = this.updateFields.bind(this)
 
+    this.fromChanged = this.fromChanged.bind(this)
+    this.toChanged = this.toChanged.bind(this)
+
     this.initialize()
   }
 
@@ -23,7 +26,7 @@ export default class Config {
     this.container.appendChild(this.functionInputLabel)
 
     this.functionInput = document.createElement('input')
-    this.functionInput.value = 'e^x'
+    this.functionInput.value = store.getState().primitiveFunction
     this.functionInput.addEventListener('input', this.inputChanged)
     this.container.appendChild(this.functionInput)
 
@@ -45,6 +48,40 @@ export default class Config {
     this.derivativeOutput = document.createElement('div')
     this.container.appendChild(this.derivativeOutput)
 
+    // Separator
+
+    this.container.appendChild(document.createElement('hr'))
+
+    // From
+
+    this.fromInputLabel = document.createElement('span')
+    this.fromInputLabel.innerText = 'From: '
+    this.container.appendChild(this.fromInputLabel)
+
+    this.fromInput = document.createElement('input')
+    this.fromInput.classList.add('rangeInput')
+    this.fromInput.value = store.getState().from
+    this.fromInput.addEventListener('input', this.fromChanged)
+    this.container.appendChild(this.fromInput)
+
+    this.container.appendChild(document.createElement('br'))
+
+    // To
+
+    this.toInputLabel = document.createElement('span')
+    this.toInputLabel.innerText = 'To: '
+    this.container.appendChild(this.toInputLabel)
+
+    this.toInput = document.createElement('input')
+    this.toInput.classList.add('rangeInput')
+    this.toInput.value = store.getState().to
+    this.toInput.addEventListener('input', this.toChanged)
+    this.container.appendChild(this.toInput)
+
+    // Separator
+
+    this.container.appendChild(document.createElement('hr'))
+
     // Process
 
     this.processButton = document.createElement('input')
@@ -57,13 +94,21 @@ export default class Config {
   }
 
   inputChanged (e) {
-    store.setState({ function: e.target.value })
+    store.setState({ primitiveFunction: e.target.value })
     this.updateFields()
   }
 
   updateFields () {
-    this.functionOutput.innerText = `\`${store.getState().function}\``
+    this.functionOutput.innerText = `\`${store.getState().primitiveFunction}\``
     this.derivativeOutput.innerText = `\`${store.getState().derivative}\``
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.container])
+  }
+
+  fromChanged (e) {
+    store.setState({ from: Number(e.target.value) })
+  }
+
+  toChanged (e) {
+    store.setState({ to: Number(e.target.value) })
   }
 }

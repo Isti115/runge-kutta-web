@@ -30,12 +30,11 @@ export default class App {
     this.renderer = new Renderer(this.rendererContainer, this.calculations)
     this.container.appendChild(this.rendererContainer)
 
-    this.renderer.renderDataset({})
-
     console.log('app initialized')
   }
 
   process () {
-    this.calculations.calculateFunctionPoints()
+    this.calculations.calculateFunctionPoints(0, 3, 0.1)
+    this.renderer.render()
   }
 }
