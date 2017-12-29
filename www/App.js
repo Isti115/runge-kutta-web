@@ -1,6 +1,7 @@
 import Config from './Config.js'
 import Calculations from './Calculations.js'
 import Renderer from './Renderer.js'
+import { coefficients } from './RungeKutta.js'
 import store from './store.js'
 
 export default class App {
@@ -36,10 +37,28 @@ export default class App {
   }
 
   process () {
-    const { from, to, step } = store.getState()
+    const { from, to, step, method, methodStep, errorLimit } = store.getState()
 
-    this.calculations.calculateFunctionPoints(from, to, step)
-    this.calculations.calculateRungeKuttaPoints(from, to, 1)
+    try {
+      this.calculations.calculateFunctionPoints(from, to, step)
+
+      if (method === 'embedded') {
+        this.calculations.calculateEmbeddedRungeKuttaPoints(
+        from,
+        to,
+        coefficients.thirdOrderCoefficients,
+        coefficients.fourthOrderCoefficients,
+        methodStep,
+        errorLimit
+      )
+      } else {
+        const currentCoefficients = coefficients[`${method}OrderCoefficients`]
+        this.calculations.calculateRungeKuttaPoints(from, to, currentCoefficients, methodStep)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
     this.renderer.render()
   }
 }

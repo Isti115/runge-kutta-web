@@ -22,8 +22,12 @@
   margin: 10px;
 }
 
+#configContainer input:not([type='number']) {
+  text-align: center;
+}
+
 #configContainer .rangeInput {
-  width: 100px;
+  width: 50px;
 
   margin: 5px;
 }

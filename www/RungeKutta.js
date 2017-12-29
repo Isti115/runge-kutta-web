@@ -33,7 +33,7 @@ const fourthOrderCoefficients = {
   c: [ 1 / 6, 2 / 6, 2 / 6, 1 / 6 ]
 }
 
-export {
+export const coefficients = {
   firstOrderCoefficients,
   secondOrderCoefficients,
   thirdOrderCoefficients,
@@ -58,9 +58,5 @@ export default class RungeKutta {
     ).reduce((a, b) => a + b, 0)
 
     return y + stepSize * sum
-  }
-
-  static execute (derivativeAt) {
-    RungeKutta.step(x, y, thirdOrderCoefficients, stepSize, derivativeAt)
   }
 }

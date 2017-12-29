@@ -33,25 +33,30 @@ export default class Renderer {
   initialize () {}
 
   render () {
+    if (!('renderMode' in window)) {
+      window.renderMode = 'lines+markers'
+    }
+
     Plotly.newPlot(this.container, [
       {
         name: 'Primitive',
         type: 'scatter',
-        mode: 'lines+markers',
+        mode: window.renderMode,
         x: this.calculations.primitivePoints.x,
         y: this.calculations.primitivePoints.y
       },
       {
         name: 'Derivative',
         type: 'scatter',
-        mode: 'lines+markers',
+        visible: 'legendonly',
+        mode: window.renderMode,
         x: this.calculations.derivativePoints.x,
         y: this.calculations.derivativePoints.y
       },
       {
         name: 'RungeKutta',
         type: 'scatter',
-        mode: 'lines+markers',
+        mode: window.renderMode,
         x: this.calculations.rungeKuttaPoints.x,
         y: this.calculations.rungeKuttaPoints.y
       }
