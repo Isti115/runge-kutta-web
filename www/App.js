@@ -22,7 +22,7 @@ export default class App {
     this.configContainer.id = 'configContainer'
     this.config = new Config(this.configContainer)
     this.config.processButton.addEventListener('click', this.process)
-    this.configContainer.addEventListener('keydown', e => { if (e.code === 'Enter') { this.process() } })
+    this.configContainer.addEventListener('keydown', e => { if (e.code === 'Enter') { e.preventDefault(); this.process() } })
     this.container.appendChild(this.configContainer)
 
     this.calculations = new Calculations()

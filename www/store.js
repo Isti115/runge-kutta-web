@@ -4,13 +4,13 @@ class Store {
   constructor () {
     this.state = {
       from: 0,
-      to: 1,
+      to: 4,
       step: 0.1,
-      methodStep: 0.1,
+      methodStep: 1,
       errorLimit: 0.1,
       primitiveFunction: 'e^x',
       givenDerivative: 'y',
-      method: 'embedded'
+      method: 'first'
     }
     this.state.derivative = math.derivative(this.state.primitiveFunction, 'x').toString()
 

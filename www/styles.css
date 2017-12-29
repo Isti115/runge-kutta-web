@@ -39,3 +39,16 @@
 #rendererContainer {
   grid-column: 2;
 }
+
+#footer {
+  width: 1000px;
+
+  margin-top: 5px;
+  padding: 5px;
+
+  text-align: center;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
