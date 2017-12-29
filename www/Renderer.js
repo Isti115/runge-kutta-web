@@ -6,15 +6,15 @@
  * @property {number} y
  */
 
-const chartColors = {
-  red: 'rgb(255, 99, 132)',
-  orange: 'rgb(255, 159, 64)',
-  yellow: 'rgb(255, 205, 86)',
-  green: 'rgb(75, 192, 192)',
-  blue: 'rgb(54, 162, 235)',
-  purple: 'rgb(153, 102, 255)',
-  grey: 'rgb(201, 203, 207)'
-}
+// const chartColors = {
+//   red: 'rgb(255, 99, 132)',
+//   orange: 'rgb(255, 159, 64)',
+//   yellow: 'rgb(255, 205, 86)',
+//   green: 'rgb(75, 192, 192)',
+//   blue: 'rgb(54, 162, 235)',
+//   purple: 'rgb(153, 102, 255)',
+//   grey: 'rgb(201, 203, 207)'
+// }
 
 export default class Renderer {
   /**
@@ -30,27 +30,28 @@ export default class Renderer {
     this.initialize()
   }
 
-  initialize () {
-    this.render()
-  }
+  initialize () {}
 
   render () {
     Plotly.newPlot(this.container, [
       {
-        name: 'primitive',
+        name: 'Primitive',
         type: 'scatter',
+        mode: 'lines+markers',
         x: this.calculations.primitivePoints.x,
         y: this.calculations.primitivePoints.y
       },
       {
-        name: 'derivative',
+        name: 'Derivative',
         type: 'scatter',
+        mode: 'lines+markers',
         x: this.calculations.derivativePoints.x,
         y: this.calculations.derivativePoints.y
       },
       {
-        name: 'rungeKutta',
+        name: 'RungeKutta',
         type: 'scatter',
+        mode: 'lines+markers',
         x: this.calculations.rungeKuttaPoints.x,
         y: this.calculations.rungeKuttaPoints.y
       }

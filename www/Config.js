@@ -1,6 +1,6 @@
 /* global MathJax */
 
-import Calculations from './Calculations.js'
+// import Calculations from './Calculations.js'
 import store from './store.js'
 
 export default class Config {
@@ -16,6 +16,7 @@ export default class Config {
 
     this.fromChanged = this.fromChanged.bind(this)
     this.toChanged = this.toChanged.bind(this)
+    this.stepChanged = this.stepChanged.bind(this)
 
     this.initialize()
   }
@@ -60,6 +61,7 @@ export default class Config {
 
     this.fromInput = document.createElement('input')
     this.fromInput.classList.add('rangeInput')
+    this.fromInput.type = 'number'
     this.fromInput.value = store.getState().from
     this.fromInput.addEventListener('input', this.fromChanged)
     this.container.appendChild(this.fromInput)
@@ -74,9 +76,26 @@ export default class Config {
 
     this.toInput = document.createElement('input')
     this.toInput.classList.add('rangeInput')
+    this.toInput.type = 'number'
     this.toInput.value = store.getState().to
     this.toInput.addEventListener('input', this.toChanged)
     this.container.appendChild(this.toInput)
+
+    this.container.appendChild(document.createElement('br'))
+
+    // Step
+
+    this.stepInputLabel = document.createElement('span')
+    this.stepInputLabel.innerText = 'Step: '
+    this.container.appendChild(this.stepInputLabel)
+
+    this.stepInput = document.createElement('input')
+    this.stepInput.classList.add('rangeInput')
+    this.stepInput.type = 'number'
+    this.stepInput.step = 0.1
+    this.stepInput.value = store.getState().step
+    this.stepInput.addEventListener('input', this.stepChanged)
+    this.container.appendChild(this.stepInput)
 
     // Separator
 
@@ -110,5 +129,9 @@ export default class Config {
 
   toChanged (e) {
     store.setState({ to: Number(e.target.value) })
+  }
+
+  stepChanged (e) {
+    store.setState({ step: Number(e.target.value) })
   }
 }
